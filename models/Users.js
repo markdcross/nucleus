@@ -13,6 +13,12 @@ const UsersSchema = new Schema({
     trim: true,
     required: 'Please enter your password'
   },
+  // TODO How to authenticate family on creation, ensure unique views, etc...?
+  family: {
+    type: String,
+    trim: true,
+    required: 'Please enter your family unit'
+  },
   chores: [
     {
       type: mongoose.Schema.Types.ObjectId,
