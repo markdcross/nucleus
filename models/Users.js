@@ -37,6 +37,12 @@ const UsersSchema = new Schema({
       ref: 'Groceries'
     }
   ],
+  events: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Events'
+    }
+  ],
   // TODO Better way to do internal messaging?
   messages: [
     {
