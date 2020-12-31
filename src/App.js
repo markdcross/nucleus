@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
+// import Chores from './components/chores/Chores.jsx';
+import PasswordCard from './components/passwords/PasswordCard.jsx';
+import Calendar from './components/calendar/Calendar.jsx';
+
+// styling
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// bring in the passwords.json file
+import passwords from './components/passwords/passwords.json';
+
+class App extends Component {
+  state = {
+    isLoggedIn: true
+  };
+  render() {
+    return (
+      <div className="App">
+        <Calendar />
+        {passwords.map((data) => (
+          <PasswordCard
+            name={data.name}
+            username={data.username}
+            password={
+              this.state.isLoggedIn
+                ? data.password
+                : '*'.repeat(data.password.length)
+            }
+            link={data.link}
+            color={this.state.isLoggedIn ? 'btn btn-primary' : 'btn btn-danger'}
+          />
+        ))}
+        {/* <Chores /> */}
+      </div>
+    );
+  }
 }
 
 export default App;
